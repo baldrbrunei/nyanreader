@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nyan Reader</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ГЛАВНЫЙ ЭКРАН -->
+<div id="startScreen">
+    <canvas id="startCatCanvas"></canvas>
+
+    <!-- Инфо кнопка -->
+    <div id="infoButton"></div>
+
+    <!-- Инфо оверлей -->
+    <div id="infoOverlay">
+        <div id="infoContent">
+            <h2>About</h2>
+            <p>
+                gamificated reader for ADHD-people<br>
+                <br>
+                in future Nyan Reader allows switching reading fonts in real time.<br>
+                All books must be UTF-8 encoded for Cyrillic support.<br>
+                HUD uses Press Start 2P. Reading fonts are user-selectable.<br>
+                bilingual-book syntax is ...<br>
+                alpha version 0.2<br>
+                <br>
+                <div>love Kis.</div>
+                <br>
+            </p>
+            <button id="closeInfo">Close</button>
+        </div>
+    </div>
+
+    <!-- Кнопки библиотек -->
+    <div id="booksBlock">
+        <img src="assets/books.png" id="booksIcon">
+        <div id="booksLabel"></div>
+    </div>
+    <div id="bilingveBlock">
+        <img src="assets/bilingve.gif" id="bilingveIcon">
+        <div id="bilingveLabel"></div>
+    </div>
+
+    <!-- Название текущей книги -->
+    <div id="currentBookTitle">No book selected</div>
+</div>
+
+<!-- БИБЛИОТЕКА Обычные книги -->
+<div id="booksLibrary" class="libraryOverlay">
+    <h2>Books Library</h2>
+    <div id="booksList"></div>
+    <button id="importBook">Import Book</button>
+    <button id="closeBooksLibrary">Close</button>
+</div>
+
+<!-- БИБЛИОТЕКА Билингв -->
+<div id="bilingveLibrary" class="libraryOverlay">
+    <h2>Bilingual Library</h2>
+    <div id="bilingveList"></div>
+    <button id="importBilingve">Import Bilingual Book</button>
+    <button id="closeBilingveLibrary">Close</button>
+</div>
+
+<!-- ИГРОВОЙ ЭКРАН -->
+<canvas id="gameCanvas"></canvas>
+<div id="wordsCounter">0 / 0 (0%)</div>
+
+<!-- Пауза -->
+<div id="pauseButton">
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+<div id="pauseOverlay">
+    <div class="menu">
+        <button id="resumeButton">Resume</button>
+        <button id="toggleBionic">Bionic</button>
+        <button id="toggleBW">B/W</button>
+        <label>Speed: <input id="speedSlider" type="range" min="1" max="5" step="0.5" value="2"></label>
+        <label>Music Volume: <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.5"></label>
+        <button id="exitToMenu">Exit to Menu</button>
+    </div>
+</div>
+
+<!-- Jump to word overlay -->
+<div id="jumpOverlay" class="overlay hidden">
+    <div class="jumpBox">
+        <div class="jumpTitle">JUMP TO WORD</div>
+        <input id="jumpWordInput" type="number" min="0">
+        <div class="jumpButtons">
+            <button id="jumpConfirm">GO</button>
+            <button id="jumpCancel">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<!--audio-->>
+<audio id="menuMusic" src="assets/audio/menu.mp3" loop></audio>
+<audio id="runnerMusic" src="assets/audio/runner.mp3" loop></audio>
+
+
+<script src="main.js" defer></script>
+</body>
+</html>
