@@ -12,7 +12,7 @@
     <canvas id="startCatCanvas"></canvas>
 
     <!-- Инфо кнопка -->
-    <div id="infoButton"></div>
+    <div id="infoButton">i</div>
 
     <!-- Инфо оверлей -->
     <div id="infoOverlay">
@@ -33,6 +33,21 @@
             <button id="closeInfo">Close</button>
         </div>
     </div>
+
+    <button id="musicButton">🔊</button>
+
+    <div id="musicOverlay">
+    <div class="musicBox">
+        <h2>Music Playlist</h2>
+        <div id="musicList"></div>
+        <input type="file" id="musicFileInput" accept="audio/*" multiple style="display:none">
+        <div class="musicButtons">
+            <button id="addTrackBtn">Add Track</button>
+            <button id="closeMusicBtn">Close</button>
+        </div>
+        <audio id="musicPlayer" controls style="width:100%; margin-top:10px"></audio>
+    </div>
+</div>
 
     <!-- Кнопки библиотек -->
     <div id="booksBlock">
@@ -78,6 +93,9 @@
     <div class="menu">
         <button id="resumeButton">Resume</button>
         <button id="toggleBionic">Bionic</button>
+        <label for="bionicColorPicker">Bionic Color:</label>
+<input type="color" id="bionicColorPicker" value="#FFFF00">
+        <button id="toggleNight">Night</button>
         <button id="toggleBW">B/W</button>
         <label>Speed: <input id="speedSlider" type="range" min="1" max="5" step="0.5" value="2"></label>
         <label>Music Volume: <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.5"></label>
@@ -97,11 +115,11 @@
     </div>
 </div>
 
-<!--audio-->>
+<!--audio-->
 <audio id="menuMusic" src="assets/audio/menu.mp3" loop></audio>
 <audio id="runnerMusic" src="assets/audio/runner.mp3" loop></audio>
 
-
 <script src="main.js" defer></script>
+<script src="twice.js"></script>
 </body>
 </html>

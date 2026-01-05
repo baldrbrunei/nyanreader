@@ -1,11 +1,16 @@
 * { box-sizing: border-box; margin:0; padding:0; }
 
+html {
+    touch-action: none;
+}
+
 /* ----------------- BODY & CANVAS ----------------- */
 body {
     background: #111;
     color: #eee;
     font-family:  monospace, system-ui, sans-serif;
     overflow: hidden;
+    touch-action: none;
 }
 canvas {
     display: block;
@@ -184,7 +189,7 @@ canvas {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
+    display: none;
     gap: 6px;
     cursor: pointer;
     z-index: 50;
@@ -194,7 +199,7 @@ canvas {
 #wordsCounter {
     position: absolute;
     top: 10px;
-    right: 10px;
+    left: 10px;
     font-family: monospace;
     font-size: 18px;
     color: white;
@@ -231,7 +236,7 @@ canvas {
 .jumpTitle {
     font-family: monospace;
     font-size: 18px;
-    color: #ff004d;
+    color: #ffffff;
     text-shadow: 1px 1px 0 #000;
 }
 
@@ -294,7 +299,7 @@ canvas {
     width: 36px;
     height: 36px;
 
-    font-family: 'Courier New', monospace;
+    font-family: 'pressstart2play', monospace;
     font-size: 28px;
     font-weight: 900;
     line-height: 32px;
@@ -315,21 +320,6 @@ canvas {
     -webkit-font-smoothing: none;
 }
 
-#infoButton::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 6px;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: #000;
-}
-
-#infoButton:active {
-    transform: translate(4px, 4px);
-    box-shadow: none;
-}
 
 #closeInfo {
     /* размер и фон */
@@ -367,6 +357,90 @@ canvas {
     box-shadow: none;
 }
 
+#musicOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 110; 
+    pointer-events: auto;
+}
+
+.musicBox {
+    background: #111;
+    border: 2px solid #fff;
+    padding: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#musicList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.trackItem {
+    background: #222;
+    border: 2px solid #fff;
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+.trackItem:hover { background: #333; transform: scale(1.02); }
+
+.musicButtons {
+    display: flex;
+    gap: 10px;
+}
+
+#musicButton {
+    position: absolute;
+    top: 20px;
+    right: 70px; /* рядом с infoButton */
+    
+    width: 36px;
+    height: 36px;
+
+    background: #fff;
+    color: #000;
+
+    border: 4px solid #000;
+    font-family: 'PressStart2P', monospace;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+
+    cursor: pointer;
+    z-index: 102; /* ВАЖНО: выше canvas */
+
+    image-rendering: pixelated;
+}
+
+#musicButton.muted::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 2px;
+    height: 140%;
+    background: red;
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
 /* ----------------- Подключаем локальный пиксельный шрифт ----------------- */
 @font-face {
     font-family: 'PressStart2P';
@@ -375,12 +449,18 @@ canvas {
     font-style: normal;
 }
 
-
-
-
-
 /* ----------------- B/W MODE ----------------- */
-.bw { filter: grayscale(1); }
+body.bw {
+    filter: grayscale(1) brightness(0.95);
+}
+
+#booksLibrary,
+#bilingveLibrary,
+#jumpOverlay,
+#infoOverlay {
+    overflow: auto; /* или scroll */
+}
+
 
 /* ----------------- RAINBOW BLOCK ----------------- */
 .rainbowBlock { width:16px; height:8px; display:inline-block; }
